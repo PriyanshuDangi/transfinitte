@@ -62,4 +62,39 @@ const claimTokens = async (proof, leaf) => {
     return await op.confirmation(1);
 }
 
-export { connectWallet, disconnectWallet, getActiveAccount, getPKH, getContract, claimTokens, getClaimedAccounts };
+const originateMinter = async (code, storage) => {
+    try {
+        console.log("started")
+        const op = await Tezos.wallet
+            .originate({
+                code: code,
+                storage: storage,
+            })
+            .send()
+        console.log(`Waiting for confirmation of origination...`);
+        const contract = await op.contract();
+        console.log(`Origination completed for ${contract.address}.`);
+        return contract.address
+
+    } catch (err) {
+        console.log(err);
+    }
+
+    // Tezos.wallet
+    //     .originate({
+    //         code: code,
+    //         storage: storage,
+    //     })
+    //     .send()
+    //     .then((originationOp) => {
+    //         console.log(`Waiting for confirmation of origination...`);
+    //         return originationOp.contract();
+    //     })
+    //     .then((contract) => {
+    //         console.log(`Origination completed for ${contract.address}.`);
+    //         return contract.address;
+    //     })
+    //     .catch((error) => console.log(`Error: ${JSON.stringify(error, null, 2)}`));
+}
+
+export { connectWallet, disconnectWallet, getActiveAccount, getPKH, getContract, claimTokens, getClaimedAccounts, originateMinter };

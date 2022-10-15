@@ -2,7 +2,7 @@
     position: absolute;
     height: 100vh;
     width: 100vw;
-    background-image: url("../../assets/images/gradient.jpg");
+    /* background-image: url("../../assets/images/gradient.jpg"); */
     background-size:     cover;           
     background-repeat:   no-repeat;
     background-position: center center; 
@@ -10,13 +10,38 @@
     top: 0;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
+    padding: 15%;
 }
 
 .container {
     color: white;
-    font-size: large;
+    /* text-align: center; */
+    flex: 1;
+}
+
+.tezosImgContainer {
+    width: 450px;
+}
+
+.tezosImg {
+    width: 100%;
+}
+
+.top {
+    font-size: 64px;
+}
+
+.middle {
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.last {
+    display: flex;
+}
+
+.last div {
     background-color: grey;
-    padding: 10px;
-    text-align: center;
+    padding: 10px 20px;
 }

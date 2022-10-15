@@ -1,0 +1,44 @@
+.overlay {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.container {
+    max-width: 600px;
+    margin-top: 70px;
+    width: 100%;
+}
+
+.title {
+    line-height: 1.33;
+    background-image: linear-gradient(to right, red, yellow);
+    color: transparent;
+    background-clip: text;
+    padding: 5px;
+    text-align: center;
+}
+
+.form {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.full {
+    width: 100vw;
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.data {
+    color: white;
+    margin: 50px;
+    word-wrap: break-word;
+}
+
+.dataButtons {
+    display: flex;
+    justify-content: space-evenly;
+}

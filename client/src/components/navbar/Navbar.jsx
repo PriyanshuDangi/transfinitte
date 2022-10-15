@@ -5,12 +5,13 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import WalletButton from '../walletButton/WalletButton';
+import { NavLink } from 'react-router-dom';
 
 function NavScrollExample() {
     return (
         <Navbar bg="dark" variant="dark" expand="sm">
             <Container fluid>
-                <Navbar.Brand href="#">ICO</Navbar.Brand>
+                <Navbar.Brand href="#">Tezos ICO</Navbar.Brand>
                 <Navbar.Toggle aria-controls="navbarScroll" />
                 <Navbar.Collapse id="navbarScroll">
                     <Nav
@@ -18,8 +19,9 @@ function NavScrollExample() {
                         style={{ maxHeight: '100px' }}
                         navbarScroll
                     >
-                        <Nav.Link href="#action1">Home</Nav.Link>
-                        <Nav.Link href="#action2">Create</Nav.Link>
+                        <NavLink className={"nav-link"} to="/">Home</NavLink>
+                        <NavLink className={"nav-link"} to="/create">Create</NavLink>
+                        <NavLink className={"nav-link"} to="/originate">Originate</NavLink>
                     </Nav>
                     <div className='d-flex'>
                         <WalletButton variant="dark" />

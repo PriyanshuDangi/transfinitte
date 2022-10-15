@@ -5,29 +5,17 @@ import { getActiveAccount } from "../../utils/wallet";
 import Claim from "../Claim/claim";
 import { merkleData } from "./data";
 
+import tezosHome from "../../assets/images/tezos-home.png"
+
 import classes from "./home.module.css"
 
 
 const Home = () => {
-    const dispatch = useDispatch();
 
     const isConnected = useSelector(selectConnected);
     const pkh = useSelector(selectPKH);
 
     const [eligible, setEligible] = useState(false);
-
-    useEffect(() => {
-        async function func() {
-            const activeAccount = await getActiveAccount();
-            if (activeAccount) {
-                const address = activeAccount.address;
-                dispatch(setPKH(address));
-            } else {
-                dispatch(removePKH());
-            }
-        }
-        func();
-    }, []);
 
 
     const isELigible = () => {
@@ -47,11 +35,27 @@ const Home = () => {
     return (
         <div className={classes.full}>
             <div className={classes.container}>
-                {
-                    isConnected ?
-                        eligible ? <Claim /> : "Not Eligible" :
-                        <div>Please Connect Your Wallet First</div>
-                }
+
+                <div className={classes.top}>
+                    A blockchain designed to evolve.
+                </div>
+                <div className={classes.middle}>
+                    Security focused. Upgradeable. Built to last.
+                </div>
+                <div className={classes.last}>
+                    <div>
+                        {
+                            isConnected ?
+                                eligible ? <Claim /> : "Not Eligible" :
+                                <div>Please Connect Your Wallet First</div>
+                        }
+                    </div>
+
+                </div>
+
+            </div>
+            <div className={classes.tezosImgContainer}>
+                <img src={tezosHome} alt="tezos-home" className={classes.tezosImg} />
             </div>
         </div>
     )

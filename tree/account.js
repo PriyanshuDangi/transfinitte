@@ -13,7 +13,7 @@ const accounts = {
     tz1RybC6u12NfBBrNanar15QyRNqAtonXbxS: "100",
     tz1fg4gu3agTw4BYwySKAq5cMYMnw6wfqrQx: "100",
     tz1SfAKDHCYUYHcspc1Gxs5MDEcyiVDDq7pc: "100",
-    tz1RybC6u12NfBBrNanar15QyRNqAtonXbxS: "100"
+    tz1a8g3D7Eqq5cAs5TBBVHAmbjF5RzG3ADRg: "100"
 }
 
 export default accounts;

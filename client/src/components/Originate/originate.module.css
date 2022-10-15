@@ -1,0 +1,37 @@
+.overlay {
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    max-width: 600px;
+    margin-top: 70px;
+    width: 100%;
+}
+
+.title {
+    line-height: 1.33;
+    background-image: linear-gradient(to right, red, yellow);
+    color: transparent;
+    background-clip: text;
+    padding: 5px;
+    text-align: center;
+}
+
+.form label {
+    color: white !important;
+}
+
+.full {
+    width: 100vw;
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+.input {}
+
+.addressInput {}
