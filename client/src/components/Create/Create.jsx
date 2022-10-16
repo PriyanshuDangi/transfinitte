@@ -11,6 +11,7 @@ import Accounts from "../Accounts/Accounts";
 import { useSelector } from "react-redux";
 import { selectConnected } from "../../store/reducers/walletSlice";
 import { Alert } from "react-bootstrap";
+import { pinJSONToIPFS } from "../../utils/upload";
 
 const accounts = {
     tz1VVhMixDYii3ECkdyq6gktjnsUuYqyMu7T: "100",
@@ -30,16 +31,23 @@ const accounts = {
     tz1a8g3D7Eqq5cAs5TBBVHAmbjF5RzG3ADRg: "100"
 }
 
-let initial = [
-    {
-        address: 'tz1VVhMixDYii3ECkdyq6gktjnsUuYqyMu7T',
-        amount: '100'
-    },
-    {
-        address: 'tz1irXvZiF9mngyvF2HKWJamTom643Cwn2jy',
-        amount: '100'
-    }
-]
+// let initial = [
+//     {
+//         address: 'tz1VVhMixDYii3ECkdyq6gktjnsUuYqyMu7T',
+//         amount: '100'
+//     },
+//     {
+//         address: 'tz1irXvZiF9mngyvF2HKWJamTom643Cwn2jy',
+//         amount: '100'
+//     }
+// ]
+
+let initial = [];
+
+// Object.keys(accounts).forEach((address) => {
+//     let amount = accounts[address];
+//     initial.push({ address, amount });
+// })
 
 const Create = () => {
 
@@ -49,6 +57,7 @@ const Create = () => {
     const isConnected = useSelector(selectConnected);
 
     const [data, setData] = useState(null);
+    const [hash, setHash] = useState(null);
 
     const generateTree = async () => {
         let acc = {};
@@ -98,6 +107,16 @@ const Create = () => {
         })
     }
 
+    const uploadToIPFS = async () => {
+        try {
+            const hash = await pinJSONToIPFS(data.json);
+            console.log(hash);
+            setHash(hash);
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
     if (!isConnected) {
         return <div className={classes.full}>
             <div className={classes.center}>
@@ -137,8 +156,10 @@ const Create = () => {
                             JSON.stringify(data.json, null, 2)
                         )}`}
                             download="filename.json">Download Data</a>
-                        <Button variant="outline-light">Upload to IPFS</Button>
+                        <Button variant="outline-light" onClick={uploadToIPFS}>Upload to IPFS</Button>
                     </div>
+
+                    {hash && <Alert> IPFS hash is {hash}</Alert>}
                 </div>}
             </div>
 

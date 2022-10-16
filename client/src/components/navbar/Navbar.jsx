@@ -11,7 +11,7 @@ function NavScrollExample() {
     return (
         <Navbar bg="dark" variant="dark" expand="sm">
             <Container fluid>
-                <Navbar.Brand href="#">Tezos ICO</Navbar.Brand>
+                <Navbar.Brand href="/">Tezos ICO</Navbar.Brand>
                 <Navbar.Toggle aria-controls="navbarScroll" />
                 <Navbar.Collapse id="navbarScroll">
                     <Nav
@@ -20,8 +20,9 @@ function NavScrollExample() {
                         navbarScroll
                     >
                         <NavLink className={"nav-link"} to="/">Home</NavLink>
-                        <NavLink className={"nav-link"} to="/create">Create</NavLink>
+                        <NavLink className={"nav-link"} to="/create">Tree</NavLink>
                         <NavLink className={"nav-link"} to="/originate">Originate</NavLink>
+                        <NavLink className={"nav-link"} to="/drop">Drop</NavLink>
                     </Nav>
                     <div className='d-flex'>
                         <WalletButton variant="dark" />

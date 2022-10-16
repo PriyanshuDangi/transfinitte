@@ -39,14 +39,16 @@ const getPKH = async () => {
     return pkh;
 };
 
-const getContract = async () => {
-    const contract = await Tezos.wallet.at(config.CONTRACT_ADDRESS);
+const getContract = async (contract_address) => {
+    const address = contract_address || config.CONTRACT_ADDRESS;
+    const contract = await Tezos.wallet.at(address);
     return contract;
 };
 
-const getClaimedAccounts = async () => {
+const getClaimedAccounts = async (contract_address) => {
+    const address = contract_address || config.CONTRACT_ADDRESS;
     const response = await axios.get(
-        `https://api.ghostnet.tzkt.io/v1/contracts/${config.CONTRACT_ADDRESS}/bigmaps/claimed/keys`
+        `https://api.ghostnet.tzkt.io/v1/contracts/${address}/bigmaps/claimed/keys`
     );
     const data = response.data;
     let accounts = {};
@@ -56,8 +58,8 @@ const getClaimedAccounts = async () => {
     return accounts;
 };
 
-const claimTokens = async (proof, leaf) => {
-    const contract = await getContract();
+const claimTokens = async (proof, leaf, contract_address) => {
+    const contract = await getContract(contract_address);
     const op = await contract.methods.claim(proof, leaf).send();
     return await op.confirmation(1);
 }
@@ -79,22 +81,6 @@ const originateMinter = async (code, storage) => {
     } catch (err) {
         console.log(err);
     }
-
-    // Tezos.wallet
-    //     .originate({
-    //         code: code,
-    //         storage: storage,
-    //     })
-    //     .send()
-    //     .then((originationOp) => {
-    //         console.log(`Waiting for confirmation of origination...`);
-    //         return originationOp.contract();
-    //     })
-    //     .then((contract) => {
-    //         console.log(`Origination completed for ${contract.address}.`);
-    //         return contract.address;
-    //     })
-    //     .catch((error) => console.log(`Error: ${JSON.stringify(error, null, 2)}`));
 }
 
 export { connectWallet, disconnectWallet, getActiveAccount, getPKH, getContract, claimTokens, getClaimedAccounts, originateMinter };
